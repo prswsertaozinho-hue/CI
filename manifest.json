@@ -1,0 +1,24 @@
+{
+  "name": "Comunicado Interno - Premium Saúde Ocupacional",
+  "short_name": "Comunicado SW",
+  "description": "Registro de ocorrências de ponto para colaboradores SW Serviços",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1a2b7c",
+  "background_color": "#f4f7fc",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
