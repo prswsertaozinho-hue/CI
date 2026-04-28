@@ -3,21 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Comunicado Interno | Premium Saúde Ocupacional</title>
+    <title>Comunicado Interno | SW Serviços</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a2b7c">
     <link rel="apple-touch-icon" href="icon-192.png">
     <link rel="stylesheet" href="style.css">
+    <!-- Bibliotecas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        /* Estilos extras garantidos */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .checkbox-item input[type="time"] {
+            margin-left: auto;
+            width: auto;
+        }
+        .horario-input:disabled {
+            background-color: #f0f0f0;
+            opacity: 0.6;
+        }
+        #outroJustificativa {
+            margin-top: 10px;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://premiumsaudeocupacional.com.br/wp-content/uploads/2023/08/logo-premium.png" alt="Logo Premium Saúde Ocupacional" class="logo" onerror="this.style.display='none'">
             <h1>📋 Comunicado Interno de Ocorrência</h1>
             <p>SW SERVIÇOS EM MEDICINA E SEGURANÇA DO TRABALHO LTDA</p>
-            <small>CNPJ: 23.804.920/0001-68 | Sob a gestão da PREMIUM Saúde Ocupacional</small>
+            <small>CNPJ: 23.804.920/0001-68</small>
         </div>
 
         <form id="ocorrenciaForm">
@@ -26,11 +53,11 @@
                 <h2>👤 Dados do Colaborador</h2>
                 <div class="form-group">
                     <label>Nome completo *</label>
-                    <input type="text" id="nomeColaborador" required>
+                    <input type="text" id="nomeColaborador" required placeholder="Digite o nome completo">
                 </div>
                 <div class="form-group">
                     <label>Matrícula / CPF</label>
-                    <input type="text" id="matricula">
+                    <input type="text" id="matricula" placeholder="Opcional">
                 </div>
                 <div class="form-group">
                     <label>Data da ocorrência *</label>
@@ -41,25 +68,43 @@
             <!-- Marcações de Ponto -->
             <div class="form-section">
                 <h2>⏱️ Marcações de Ponto</h2>
-                <div class="grid-2">
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada1"> Entrada 1</label><input type="time" class="horario-input" data-tipo="entrada1" disabled></div>
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida1"> Saída 1</label><input type="time" class="horario-input" data-tipo="saida1" disabled></div>
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada2"> Entrada 2</label><input type="time" class="horario-input" data-tipo="entrada2" disabled></div>
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida2"> Saída 2</label><input type="time" class="horario-input" data-tipo="saida2" disabled></div>
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada3"> Entrada 3</label><input type="time" class="horario-input" data-tipo="entrada3" disabled></div>
-                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida3"> Saída 3</label><input type="time" class="horario-input" data-tipo="saida3" disabled></div>
+                <div class="grid-2" id="marcacoesContainer">
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada1"> Entrada 1</label>
+                        <input type="time" class="horario-input" data-tipo="entrada1" disabled>
+                    </div>
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida1"> Saída 1</label>
+                        <input type="time" class="horario-input" data-tipo="saida1" disabled>
+                    </div>
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada2"> Entrada 2</label>
+                        <input type="time" class="horario-input" data-tipo="entrada2" disabled>
+                    </div>
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida2"> Saída 2</label>
+                        <input type="time" class="horario-input" data-tipo="saida2" disabled>
+                    </div>
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada3"> Entrada 3</label>
+                        <input type="time" class="horario-input" data-tipo="entrada3" disabled>
+                    </div>
+                    <div class="checkbox-item">
+                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida3"> Saída 3</label>
+                        <input type="time" class="horario-input" data-tipo="saida3" disabled>
+                    </div>
                 </div>
             </div>
 
-            <!--  Tipo de Ocorrência -->
+            <!-- Tipo de Ocorrência -->
             <div class="form-section">
-                <h2>⚠️Tipo de Ocorrência</h2>
+                <h2>⚠️ Tipo de Ocorrência</h2>
                 <div class="radio-group">
                     <label><input type="radio" name="tipoOcorrencia" value="inclusao" required> Inclusão</label>
                     <label><input type="radio" name="tipoOcorrencia" value="exclusao"> Exclusão</label>
                     <label><input type="radio" name="tipoOcorrencia" value="outro"> Outro</label>
                 </div>
-                <div class="form-group" id="outroJustificativa" style="display:none;">
+                <div class="form-group" id="outroJustificativa" style="display: none;">
                     <label>Justificativa:</label>
                     <input type="text" id="justificativaOutro" placeholder="Descreva a ocorrência">
                 </div>
@@ -73,12 +118,18 @@
             <div class="form-section">
                 <h2>✍️ Assinaturas</h2>
                 <div class="grid-2">
-                    <div class="form-group"><label>Responsável (RH/Supervisor):</label><input type="text" id="responsavel" required></div>
-                    <div class="form-group"><label>Colaborador:</label><input type="text" id="colaboradorAssinatura" required></div>
+                    <div class="form-group">
+                        <label>Responsável (RH/Supervisor):</label>
+                        <input type="text" id="responsavel" required placeholder="Nome do responsável">
+                    </div>
+                    <div class="form-group">
+                        <label>Colaborador:</label>
+                        <input type="text" id="colaboradorAssinatura" required placeholder="Nome do colaborador">
+                    </div>
                 </div>
             </div>
 
-            <!-- Botões de Ação -->
+            <!-- Botões -->
             <div class="button-group">
                 <button type="button" id="previewBtn" class="btn btn-primary">👁️ Visualizar</button>
                 <button type="button" id="gerarPdfBtn" class="btn btn-pdf">📄 Gerar PDF</button>
@@ -88,11 +139,316 @@
         </form>
 
         <div id="previewArea" style="display:none;">
-            <div class="preview-header"><h2>📄 Visualização</h2><button id="fecharPreview" class="btn-close">✖️ Fechar</button></div>
+            <div class="preview-header">
+                <h2>📄 Visualização</h2>
+                <button id="fecharPreview" class="btn-close">✖️ Fechar</button>
+            </div>
             <div id="comunicadoContent"></div>
         </div>
     </div>
-    <script src="sw-install.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        // ==================== SCRIPT COMPLETO EMBUTIDO ====================
+        (function() {
+            console.log('🚀 App inicializando...');
+            
+            // Aguarda o DOM carregar completamente
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('✅ DOM carregado');
+                
+                // 1. Preencher data atual
+                const dataInput = document.getElementById('dataOcorrencia');
+                if (dataInput) {
+                    const hoje = new Date();
+                    const ano = hoje.getFullYear();
+                    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+                    const dia = String(hoje.getDate()).padStart(2, '0');
+                    dataInput.value = `${ano}-${mes}-${dia}`;
+                    console.log('📅 Data preenchida:', dataInput.value);
+                }
+                
+                // 2. Controle de horários - VERSÃO SIMPLIFICADA E FUNCIONAL
+                const checkboxes = document.querySelectorAll('.marcacao-check');
+                console.log('📋 Checkboxes encontrados:', checkboxes.length);
+                
+                function atualizarHorario(checkbox) {
+                    const tipo = checkbox.getAttribute('data-tipo');
+                    const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
+                    
+                    if (horarioInput) {
+                        if (checkbox.checked) {
+                            horarioInput.disabled = false;
+                            if (!horarioInput.value) {
+                                horarioInput.value = '08:00';
+                            }
+                            console.log(`✅ Habilitado: ${tipo} = ${horarioInput.value}`);
+                        } else {
+                            horarioInput.disabled = true;
+                            horarioInput.value = '';
+                            console.log(`❌ Desabilitado: ${tipo}`);
+                        }
+                    }
+                }
+                
+                // Aplicar a todos os checkboxes
+                checkboxes.forEach(checkbox => {
+                    // Estado inicial
+                    atualizarHorario(checkbox);
+                    
+                    // Evento de mudança
+                    checkbox.addEventListener('change', function() {
+                        atualizarHorario(this);
+                    });
+                });
+                
+                // 3. Controle do campo "Outro"
+                const radioOutro = document.querySelector('input[value="outro"]');
+                const radioInclusao = document.querySelector('input[value="inclusao"]');
+                const radioExclusao = document.querySelector('input[value="exclusao"]');
+                const outroDiv = document.getElementById('outroJustificativa');
+                const justificativaOutro = document.getElementById('justificativaOutro');
+                
+                function toggleOutro() {
+                    if (radioOutro && radioOutro.checked) {
+                        outroDiv.style.display = 'block';
+                        if (justificativaOutro) justificativaOutro.required = true;
+                        console.log('📝 Campo "Outro" exibido');
+                    } else {
+                        outroDiv.style.display = 'none';
+                        if (justificativaOutro) {
+                            justificativaOutro.required = false;
+                            justificativaOutro.value = '';
+                        }
+                        console.log('📝 Campo "Outro" oculto');
+                    }
+                }
+                
+                if (radioOutro) {
+                    radioOutro.addEventListener('change', toggleOutro);
+                    if (radioInclusao) radioInclusao.addEventListener('change', toggleOutro);
+                    if (radioExclusao) radioExclusao.addEventListener('change', toggleOutro);
+                    toggleOutro(); // Estado inicial
+                }
+                
+                // 4. Função para coletar dados
+                function coletarDados() {
+                    const marcacoes = [];
+                    const tipos = ['entrada1', 'saida1', 'entrada2', 'saida2', 'entrada3', 'saida3'];
+                    
+                    tipos.forEach(tipo => {
+                        const checkbox = document.querySelector(`.marcacao-check[data-tipo="${tipo}"]`);
+                        const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
+                        
+                        if (checkbox && checkbox.checked && horarioInput && horarioInput.value) {
+                            let nome = tipo === 'entrada1' ? 'Entrada 1' :
+                                      tipo === 'saida1' ? 'Saída 1' :
+                                      tipo === 'entrada2' ? 'Entrada 2' :
+                                      tipo === 'saida2' ? 'Saída 2' :
+                                      tipo === 'entrada3' ? 'Entrada 3' : 'Saída 3';
+                            marcacoes.push({ tipo: nome, horario: horarioInput.value });
+                        }
+                    });
+                    
+                    let tipoOcorrencia = '';
+                    let justificativa = '';
+                    const radioSelecionado = document.querySelector('input[name="tipoOcorrencia"]:checked');
+                    if (radioSelecionado) {
+                        if (radioSelecionado.value === 'inclusao') tipoOcorrencia = 'Inclusão';
+                        else if (radioSelecionado.value === 'exclusao') tipoOcorrencia = 'Exclusão';
+                        else if (radioSelecionado.value === 'outro') {
+                            tipoOcorrencia = 'Outro';
+                            justificativa = justificativaOutro ? justificativaOutro.value : '';
+                        }
+                    }
+                    
+                    return {
+                        nomeColaborador: document.getElementById('nomeColaborador')?.value || '',
+                        matricula: document.getElementById('matricula')?.value || '',
+                        dataOcorrencia: document.getElementById('dataOcorrencia')?.value || '',
+                        marcacoes: marcacoes,
+                        tipoOcorrencia: tipoOcorrencia,
+                        justificativa: justificativa,
+                        observacoes: document.getElementById('observacoes')?.value || '',
+                        responsavel: document.getElementById('responsavel')?.value || '',
+                        colaboradorAssinatura: document.getElementById('colaboradorAssinatura')?.value || ''
+                    };
+                }
+                
+                // 5. Validação
+                function validarDados(dados) {
+                    if (!dados.nomeColaborador) { alert('❌ Preencha o nome do colaborador'); return false; }
+                    if (!dados.dataOcorrencia) { alert('❌ Selecione a data da ocorrência'); return false; }
+                    if (!dados.tipoOcorrencia) { alert('❌ Selecione o tipo de ocorrência'); return false; }
+                    if (dados.tipoOcorrencia === 'Outro' && !dados.justificativa) { alert('❌ Preencha a justificativa'); return false; }
+                    if (!dados.responsavel) { alert('❌ Preencha o nome do responsável'); return false; }
+                    if (!dados.colaboradorAssinatura) { alert('❌ Preencha o nome do colaborador'); return false; }
+                    return true;
+                }
+                
+                // 6. Gerar HTML do comunicado
+                function gerarComunicadoHTML(dados) {
+                    const dataFormatada = dados.dataOcorrencia ? 
+                        new Date(dados.dataOcorrencia + 'T00:00:00').toLocaleDateString('pt-BR') : 
+                        '___/___/_____';
+                    
+                    let marcacoesHTML = '';
+                    if (dados.marcacoes.length > 0) {
+                        marcacoesHTML = `
+                            <table class="marcacoes-table">
+                                <thead><tr><th>Horário</th><th>Registro</th></tr></thead>
+                                <tbody>
+                                    ${dados.marcacoes.map(m => `<tr><td>${m.tipo}</td><td>${m.horario}</td></tr>`).join('')}
+                                </tbody>
+                            </table>
+                        `;
+                    } else {
+                        marcacoesHTML = '<p style="text-align:center; color:#999;">Nenhuma marcação registrada</p>';
+                    }
+                    
+                    return `
+                        <div class="comunicado-card" id="comunicadoParaExportar">
+                            <div class="comunicado-header" style="text-align:center; border-bottom:2px solid #1a2b7c; padding-bottom:15px; margin-bottom:20px;">
+                                <h2>COMUNICADO INTERNO DE OCORRÊNCIA</h2>
+                                <p>SW SERVIÇOS EM MEDICINA E SEGURANÇA DO TRABALHO LTDA</p>
+                                <small>CNPJ: 23.804.920/0001-68</small>
+                            </div>
+                            <div class="info-row" style="display:flex; justify-content:space-between; padding:8px; background:#f4f7fc; margin-bottom:5px;">
+                                <strong>Colaborador:</strong> <span>${dados.nomeColaborador}</span>
+                            </div>
+                            ${dados.matricula ? `<div class="info-row" style="display:flex; justify-content:space-between; padding:8px; background:#f4f7fc; margin-bottom:5px;"><strong>Matrícula:</strong> <span>${dados.matricula}</span></div>` : ''}
+                            <div class="info-row" style="display:flex; justify-content:space-between; padding:8px; background:#f4f7fc; margin-bottom:5px;">
+                                <strong>Data:</strong> <span>${dataFormatada}</span>
+                            </div>
+                            <div class="info-row" style="display:flex; justify-content:space-between; padding:8px; background:#f4f7fc; margin-bottom:5px;">
+                                <strong>Tipo:</strong> <span>${dados.tipoOcorrencia}${dados.justificativa ? ` - ${dados.justificativa}` : ''}</span>
+                            </div>
+                            <h3 style="margin:20px 0 10px;">⏱️ Marcações</h3>
+                            ${marcacoesHTML}
+                            ${dados.observacoes ? `<h3 style="margin:20px 0 10px;">📝 Observações</h3><div class="info-row" style="padding:8px; background:#f4f7fc;">${dados.observacoes}</div>` : ''}
+                            <div class="assinaturas" style="display:flex; justify-content:space-between; margin-top:30px; padding-top:20px; border-top:2px dashed #2a4f9e;">
+                                <div><strong>Responsável:</strong><br>${dados.responsavel}</div>
+                                <div><strong>Colaborador:</strong><br>${dados.colaboradorAssinatura}</div>
+                            </div>
+                            <div style="text-align:center; font-size:10px; color:#999; margin-top:20px;">
+                                Gerado em ${new Date().toLocaleString('pt-BR')}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // 7. Preview
+                const previewArea = document.getElementById('previewArea');
+                const comunicadoContent = document.getElementById('comunicadoContent');
+                
+                document.getElementById('previewBtn')?.addEventListener('click', function() {
+                    const dados = coletarDados();
+                    if (!validarDados(dados)) return;
+                    comunicadoContent.innerHTML = gerarComunicadoHTML(dados);
+                    previewArea.style.display = 'block';
+                    previewArea.scrollIntoView({ behavior: 'smooth' });
+                });
+                
+                document.getElementById('fecharPreview')?.addEventListener('click', function() {
+                    previewArea.style.display = 'none';
+                });
+                
+                // 8. Gerar PDF
+                document.getElementById('gerarPdfBtn')?.addEventListener('click', async function() {
+                    const dados = coletarDados();
+                    if (!validarDados(dados)) return;
+                    
+                    this.disabled = true;
+                    this.innerHTML = '⏳ Gerando PDF...';
+                    
+                    try {
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute';
+                        tempDiv.style.left = '-9999px';
+                        tempDiv.style.top = '-9999px';
+                        tempDiv.innerHTML = gerarComunicadoHTML(dados);
+                        document.body.appendChild(tempDiv);
+                        
+                        const element = tempDiv.querySelector('#comunicadoParaExportar');
+                        if (element) {
+                            await html2pdf().set({
+                                margin: 0.5,
+                                filename: `Comunicado_${dados.nomeColaborador.replace(/\s/g, '_')}.pdf`,
+                                image: { type: 'jpeg', quality: 0.98 },
+                                html2canvas: { scale: 2 },
+                                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                            }).from(element).save();
+                        }
+                        document.body.removeChild(tempDiv);
+                        alert('✅ PDF gerado com sucesso!');
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        alert('❌ Erro ao gerar PDF: ' + error.message);
+                    } finally {
+                        this.disabled = false;
+                        this.innerHTML = '📄 Gerar PDF';
+                    }
+                });
+                
+                // 9. Gerar Imagem
+                document.getElementById('gerarImagemBtn')?.addEventListener('click', async function() {
+                    const dados = coletarDados();
+                    if (!validarDados(dados)) return;
+                    
+                    this.disabled = true;
+                    this.innerHTML = '⏳ Gerando imagem...';
+                    
+                    try {
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute';
+                        tempDiv.style.left = '-9999px';
+                        tempDiv.style.top = '-9999px';
+                        tempDiv.style.width = '800px';
+                        tempDiv.style.backgroundColor = 'white';
+                        tempDiv.innerHTML = gerarComunicadoHTML(dados);
+                        document.body.appendChild(tempDiv);
+                        
+                        const element = tempDiv.querySelector('#comunicadoParaExportar');
+                        if (element) {
+                            const canvas = await html2canvas(element, { scale: 2, backgroundColor: '#ffffff' });
+                            const link = document.createElement('a');
+                            link.download = `Comunicado_${dados.nomeColaborador.replace(/\s/g, '_')}.png`;
+                            link.href = canvas.toDataURL();
+                            link.click();
+                            alert('✅ Imagem gerada com sucesso!');
+                        }
+                        document.body.removeChild(tempDiv);
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        alert('❌ Erro ao gerar imagem: ' + error.message);
+                    } finally {
+                        this.disabled = false;
+                        this.innerHTML = '🖼️ Salvar Imagem';
+                    }
+                });
+                
+                // 10. Limpar formulário
+                document.querySelector('button[type="reset"]')?.addEventListener('click', function() {
+                    setTimeout(() => {
+                        document.querySelectorAll('.marcacao-check').forEach(cb => {
+                            const tipo = cb.getAttribute('data-tipo');
+                            const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
+                            if (horarioInput) {
+                                horarioInput.disabled = true;
+                                horarioInput.value = '';
+                            }
+                        });
+                        if (outroDiv) outroDiv.style.display = 'none';
+                        if (previewArea) previewArea.style.display = 'none';
+                        if (dataInput) {
+                            const hoje = new Date();
+                            dataInput.value = `${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}-${String(hoje.getDate()).padStart(2,'0')}`;
+                        }
+                    }, 10);
+                });
+                
+                console.log('✅ App pronto! Todos os recursos ativados.');
+            });
+        })();
+    </script>
 </body>
 </html>
