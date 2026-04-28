@@ -8,236 +8,39 @@
     <meta name="theme-color" content="#1a2b7c">
     <link rel="apple-touch-icon" href="icon-192.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2b7c 0%, #2a4f9e 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-            padding: 30px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #1a2b7c;
-        }
-        
-        .header h1 {
-            color: #1a2b7c;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: #2a4f9e;
-            font-weight: bold;
-        }
-        
-        .form-section {
-            background: #f4f7fc;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-        }
-        
-        .form-section h2 {
-            color: #1a2b7c;
-            border-left: 5px solid #1a2b7c;
-            padding-left: 15px;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            font-weight: 600;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: 0.2s;
-        }
-        
-        input:focus, textarea:focus {
-            border-color: #1a2b7c;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(26,43,124,0.1);
-        }
-        
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        
-        .checkbox-item input[type="time"] {
-            width: auto;
-            margin-left: auto;
-        }
-        
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-            flex: 1;
-        }
-        
-        .btn-primary {
-            background: #1a2b7c;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #2a4f9e;
-            transform: translateY(-2px);
-        }
-        
-        .btn-pdf {
-            background: #42b549;
-            color: white;
-        }
-        
-        .btn-img {
-            background: #ff8c00;
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .comunicado-card {
-            background: white;
-            border: 2px solid #1a2b7c;
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-        
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px;
-            background: #f4f7fc;
-            margin-bottom: 5px;
-            border-radius: 6px;
-        }
-        
-        .marcacoes-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        
-        .marcacoes-table th {
-            background: #1a2b7c;
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-        
-        .marcacoes-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        
-        .assinaturas {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px dashed #2a4f9e;
-        }
-        
-        .preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-        }
-        
-        .btn-close {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        @media (max-width: 700px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .container {
-                padding: 15px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a2b7c 0%, #2a4f9e 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; padding: 30px; }
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #1a2b7c; }
+        .header h1 { color: #1a2b7c; font-size: 1.8rem; margin-bottom: 10px; }
+        .header p { color: #2a4f9e; font-weight: bold; }
+        .form-section { background: #f4f7fc; padding: 20px; border-radius: 16px; margin-bottom: 20px; }
+        .form-section h2 { color: #1a2b7c; border-left: 5px solid #1a2b7c; padding-left: 15px; margin-bottom: 20px; font-size: 1.4rem; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { font-weight: 600; color: #333; display: block; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; transition: 0.2s; }
+        input:focus, textarea:focus { border-color: #1a2b7c; outline: none; box-shadow: 0 0 0 3px rgba(26,43,124,0.1); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .checkbox-item { display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 8px; }
+        .checkbox-item input[type="time"] { width: auto; margin-left: auto; }
+        .radio-group { display: flex; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
+        .btn { padding: 12px 24px; border: none; border-radius: 40px; font-weight: bold; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; flex: 1; }
+        .btn-primary { background: #1a2b7c; color: white; }
+        .btn-primary:hover { background: #2a4f9e; transform: translateY(-2px); }
+        .btn-img { background: #ff8c00; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .button-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .comunicado-card { background: white; border: 2px solid #1a2b7c; border-radius: 16px; padding: 25px; margin-top: 20px; }
+        .info-row { display: flex; justify-content: space-between; padding: 8px; background: #f4f7fc; margin-bottom: 5px; border-radius: 6px; }
+        .marcacoes-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .marcacoes-table th { background: #1a2b7c; color: white; padding: 10px; text-align: left; }
+        .marcacoes-table td { border: 1px solid #ddd; padding: 8px; }
+        .assinaturas { display: flex; justify-content: space-between; margin-top: 25px; padding-top: 20px; border-top: 2px dashed #2a4f9e; }
+        .preview-header { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 20px; padding-top: 20px; border-top: 2px solid #e0e0e0; }
+        .btn-close { background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } .container { padding: 15px; } }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
@@ -249,7 +52,6 @@
         </div>
 
         <form id="ocorrenciaForm" autocomplete="on">
-            <!-- Dados do Colaborador -->
             <div class="form-section">
                 <h2>👤 Dados do Colaborador</h2>
                 <div class="form-group">
@@ -266,38 +68,18 @@
                 </div>
             </div>
 
-            <!-- Marcações de Ponto -->
             <div class="form-section">
                 <h2>⏱️ Marcações de Ponto</h2>
                 <div class="grid-2" id="marcacoesContainer">
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada1"> Entrada 1</label>
-                        <input type="time" class="horario-input" data-tipo="entrada1" disabled>
-                    </div>
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida1"> Saída 1</label>
-                        <input type="time" class="horario-input" data-tipo="saida1" disabled>
-                    </div>
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada2"> Entrada 2</label>
-                        <input type="time" class="horario-input" data-tipo="entrada2" disabled>
-                    </div>
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida2"> Saída 2</label>
-                        <input type="time" class="horario-input" data-tipo="saida2" disabled>
-                    </div>
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="entrada3"> Entrada 3</label>
-                        <input type="time" class="horario-input" data-tipo="entrada3" disabled>
-                    </div>
-                    <div class="checkbox-item">
-                        <label><input type="checkbox" class="marcacao-check" data-tipo="saida3"> Saída 3</label>
-                        <input type="time" class="horario-input" data-tipo="saida3" disabled>
-                    </div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada1"> Entrada 1</label><input type="time" class="horario-input" data-tipo="entrada1" disabled></div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida1"> Saída 1</label><input type="time" class="horario-input" data-tipo="saida1" disabled></div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada2"> Entrada 2</label><input type="time" class="horario-input" data-tipo="entrada2" disabled></div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida2"> Saída 2</label><input type="time" class="horario-input" data-tipo="saida2" disabled></div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="entrada3"> Entrada 3</label><input type="time" class="horario-input" data-tipo="entrada3" disabled></div>
+                    <div class="checkbox-item"><label><input type="checkbox" class="marcacao-check" data-tipo="saida3"> Saída 3</label><input type="time" class="horario-input" data-tipo="saida3" disabled></div>
                 </div>
             </div>
 
-            <!-- Tipo de Ocorrência -->
             <div class="form-section">
                 <h2>⚠️ Tipo de Ocorrência</h2>
                 <div class="radio-group">
@@ -311,7 +93,6 @@
                 </div>
             </div>
 
-            <!-- Observações e Assinaturas -->
             <div class="form-section">
                 <h2>📝 Observações</h2>
                 <textarea id="observacoes" rows="3" placeholder="Informações adicionais..." autocomplete="off"></textarea>
@@ -319,29 +100,21 @@
             <div class="form-section">
                 <h2>✍️ Assinaturas</h2>
                 <div class="grid-2">
-                    <div class="form-group">
-                        <label>Responsável (RH/Supervisor):</label>
-                        <input type="text" id="responsavel" required placeholder="Nome do responsável" autocomplete="name">
-                    </div>
-                    <div class="form-group">
-                        <label>Colaborador:</label>
-                        <input type="text" id="colaboradorAssinatura" required placeholder="Nome do colaborador" autocomplete="name">
-                    </div>
+                    <div class="form-group"><label>Responsável (RH/Supervisor):</label><input type="text" id="responsavel" required placeholder="Nome do responsável" autocomplete="name"></div>
+                    <div class="form-group"><label>Colaborador:</label><input type="text" id="colaboradorAssinatura" required placeholder="Nome do colaborador" autocomplete="name"></div>
                 </div>
             </div>
 
-            <!-- Botões -->
             <div class="button-group">
-                <button type="button" id="previewBtn" class="btn btn-primary">👁️ Visualizar</button>
-                <button type="button" id="gerarPdfBtn" class="btn btn-pdf">📄 Gerar PDF</button>
-                <button type="button" id="gerarImagemBtn" class="btn btn-img">🖼️ Salvar Imagem</button>
-                <button type="reset" class="btn btn-secondary">🗑️ Limpar</button>
+                <button type="button" id="previewBtn" class="btn btn-primary">👁️ Visualizar Comunicado</button>
+                <button type="button" id="gerarImagemBtn" class="btn btn-img">🖼️ Salvar como Imagem</button>
+                <button type="reset" class="btn btn-secondary">🗑️ Limpar Formulário</button>
             </div>
         </form>
 
         <div id="previewArea" style="display:none;">
             <div class="preview-header">
-                <h2>📄 Visualização</h2>
+                <h2>📄 Visualização do Comunicado</h2>
                 <button id="fecharPreview" class="btn-close">✖️ Fechar</button>
             </div>
             <div id="comunicadoContent"></div>
@@ -349,72 +122,53 @@
     </div>
 
     <script>
-        // ==================== SCRIPT COMPLETO CORRIGIDO ====================
         (function() {
             console.log('🚀 App inicializando...');
             
             document.addEventListener('DOMContentLoaded', function() {
                 console.log('✅ DOM carregado');
                 
-                // 1. Preencher data atual
+                // Data atual
                 const dataInput = document.getElementById('dataOcorrencia');
                 if (dataInput) {
-                    const hoje = new Date();
-                    dataInput.value = hoje.toISOString().split('T')[0];
-                    console.log('📅 Data preenchida:', dataInput.value);
+                    dataInput.value = new Date().toISOString().split('T')[0];
                 }
                 
-                // 2. Controle de horários
+                // Controle de horários
                 const checkboxes = document.querySelectorAll('.marcacao-check');
-                console.log('📋 Checkboxes encontrados:', checkboxes.length);
-                
                 function atualizarHorario(checkbox) {
                     const tipo = checkbox.getAttribute('data-tipo');
                     const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
-                    
                     if (horarioInput) {
                         if (checkbox.checked) {
                             horarioInput.disabled = false;
-                            if (!horarioInput.value) {
-                                horarioInput.value = '08:00';
-                            }
-                            console.log(`✅ Habilitado: ${tipo} = ${horarioInput.value}`);
+                            if (!horarioInput.value) horarioInput.value = '08:00';
                         } else {
                             horarioInput.disabled = true;
                             horarioInput.value = '';
-                            console.log(`❌ Desabilitado: ${tipo}`);
                         }
                     }
                 }
-                
-                checkboxes.forEach(checkbox => {
-                    atualizarHorario(checkbox);
-                    checkbox.addEventListener('change', function() {
-                        atualizarHorario(this);
-                    });
+                checkboxes.forEach(cb => {
+                    atualizarHorario(cb);
+                    cb.addEventListener('change', () => atualizarHorario(cb));
                 });
                 
-                // 3. Controle do campo "Outro"
+                // Campo "Outro"
                 const radioOutro = document.querySelector('input[value="outro"]');
                 const radioInclusao = document.querySelector('input[value="inclusao"]');
                 const radioExclusao = document.querySelector('input[value="exclusao"]');
                 const outroDiv = document.getElementById('outroJustificativa');
                 const justificativaOutro = document.getElementById('justificativaOutro');
-                
                 function toggleOutro() {
                     if (radioOutro && radioOutro.checked) {
                         outroDiv.style.display = 'block';
                         if (justificativaOutro) justificativaOutro.required = true;
-                        console.log('📝 Campo "Outro" exibido');
                     } else {
                         outroDiv.style.display = 'none';
-                        if (justificativaOutro) {
-                            justificativaOutro.required = false;
-                            justificativaOutro.value = '';
-                        }
+                        if (justificativaOutro) { justificativaOutro.required = false; justificativaOutro.value = ''; }
                     }
                 }
-                
                 if (radioOutro) {
                     radioOutro.addEventListener('change', toggleOutro);
                     if (radioInclusao) radioInclusao.addEventListener('change', toggleOutro);
@@ -422,50 +176,36 @@
                     toggleOutro();
                 }
                 
-                // 4. Coletar dados
+                // Coletar dados
                 function coletarDados() {
                     const marcacoes = [];
                     const tipos = ['entrada1', 'saida1', 'entrada2', 'saida2', 'entrada3', 'saida3'];
-                    
+                    const nomes = { entrada1:'Entrada 1', saida1:'Saída 1', entrada2:'Entrada 2', saida2:'Saída 2', entrada3:'Entrada 3', saida3:'Saída 3' };
                     tipos.forEach(tipo => {
                         const checkbox = document.querySelector(`.marcacao-check[data-tipo="${tipo}"]`);
                         const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
-                        
                         if (checkbox && checkbox.checked && horarioInput && horarioInput.value) {
-                            const nomes = {
-                                entrada1: 'Entrada 1', saida1: 'Saída 1',
-                                entrada2: 'Entrada 2', saida2: 'Saída 2',
-                                entrada3: 'Entrada 3', saida3: 'Saída 3'
-                            };
                             marcacoes.push({ tipo: nomes[tipo], horario: horarioInput.value });
                         }
                     });
-                    
                     let tipoOcorrencia = '', justificativa = '';
-                    const radioSelecionado = document.querySelector('input[name="tipoOcorrencia"]:checked');
-                    if (radioSelecionado) {
-                        if (radioSelecionado.value === 'inclusao') tipoOcorrencia = 'Inclusão';
-                        else if (radioSelecionado.value === 'exclusao') tipoOcorrencia = 'Exclusão';
-                        else if (radioSelecionado.value === 'outro') {
-                            tipoOcorrencia = 'Outro';
-                            justificativa = justificativaOutro ? justificativaOutro.value : '';
-                        }
+                    const radioSel = document.querySelector('input[name="tipoOcorrencia"]:checked');
+                    if (radioSel) {
+                        if (radioSel.value === 'inclusao') tipoOcorrencia = 'Inclusão';
+                        else if (radioSel.value === 'exclusao') tipoOcorrencia = 'Exclusão';
+                        else if (radioSel.value === 'outro') { tipoOcorrencia = 'Outro'; justificativa = justificativaOutro?.value || ''; }
                     }
-                    
                     return {
                         nomeColaborador: document.getElementById('nomeColaborador')?.value || '',
                         matricula: document.getElementById('matricula')?.value || '',
                         dataOcorrencia: document.getElementById('dataOcorrencia')?.value || '',
-                        marcacoes: marcacoes,
-                        tipoOcorrencia: tipoOcorrencia,
-                        justificativa: justificativa,
+                        marcacoes, tipoOcorrencia, justificativa,
                         observacoes: document.getElementById('observacoes')?.value || '',
                         responsavel: document.getElementById('responsavel')?.value || '',
                         colaboradorAssinatura: document.getElementById('colaboradorAssinatura')?.value || ''
                     };
                 }
                 
-                // 5. Validar dados
                 function validarDados(dados) {
                     if (!dados.nomeColaborador) { alert('❌ Preencha o nome do colaborador'); return false; }
                     if (!dados.dataOcorrencia) { alert('❌ Selecione a data da ocorrência'); return false; }
@@ -476,87 +216,49 @@
                     return true;
                 }
                 
-                // 5.1 Função para formatar data corretamente
                 function formatarData(dataString) {
                     if (!dataString) return '___/___/_____';
                     const partes = dataString.split('-');
-                    if (partes.length === 3) {
-                        return `${partes[2]}/${partes[1]}/${partes[0]}`;
-                    }
-                    return dataString;
+                    return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : dataString;
                 }
                 
-                // 6. Gerar HTML para impressão/PDF
                 function gerarComunicadoHTML(dados) {
                     const dataFormatada = formatarData(dados.dataOcorrencia);
-                    
-                    let marcacoesHTML = '';
-                    if (dados.marcacoes.length > 0) {
-                        marcacoesHTML = `
-                            <table class="marcacoes-table" style="width:100%; border-collapse:collapse;">
-                                <thead>
-                                    <tr style="background:#1a2b7c; color:white;">
-                                        <th style="padding:10px; text-align:left;">Horário</th>
-                                        <th style="padding:10px; text-align:left;">Registro</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${dados.marcacoes.map(m => `
-                                        <tr style="border-bottom:1px solid #ddd;">
-                                            <td style="padding:8px;">${m.tipo}</td>
-                                            <td style="padding:8px;">${m.horario}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        `;
-                    } else {
-                        marcacoesHTML = '<p style="text-align:center; color:#999;">Nenhuma marcação de ponto registrada.</p>';
-                    }
+                    let marcacoesHTML = dados.marcacoes.length > 0 ? `
+                        <table class="marcacoes-table">
+                            <thead><tr><th>Horário</th><th>Registro</th></tr></thead>
+                            <tbody>${dados.marcacoes.map(m => `<tr><td>${m.tipo}</td><td>${m.horario}</td></tr>`).join('')}</tbody>
+                        </table>
+                    ` : '<p style="text-align:center; color:#999;">Nenhuma marcação de ponto registrada.</p>';
                     
                     return `
-                        <div id="comunicadoParaExportar" style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 0 auto; background: white; padding: 30px;">
-                            <div style="text-align: center; border-bottom: 3px solid #1a2b7c; padding-bottom: 15px; margin-bottom: 25px;">
-                                <h2 style="color: #1a2b7c; margin: 0 0 5px 0;">COMUNICADO INTERNO DE OCORRÊNCIA</h2>
-                                <p style="color: #2a4f9e; font-weight: bold; margin: 5px 0;">SW SERVIÇOS EM MEDICINA E SEGURANÇA DO TRABALHO LTDA</p>
-                                <small style="color: #666;">CNPJ: 23.804.920/0001-68</small>
+                        <div class="comunicado-card" id="comunicadoParaExportar">
+                            <div style="text-align:center; border-bottom:2px solid #1a2b7c; padding-bottom:15px; margin-bottom:20px;">
+                                <h2 style="color:#1a2b7c;">COMUNICADO INTERNO DE OCORRÊNCIA</h2>
+                                <p style="color:#2a4f9e; font-weight:bold;">SW SERVIÇOS EM MEDICINA E SEGURANÇA DO TRABALHO LTDA</p>
+                                <small>CNPJ: 23.804.920/0001-68</small>
                             </div>
-                            
-                            <div style="background: #f4f7fc; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
-                                <strong>Colaborador:</strong> ${dados.nomeColaborador}
-                            </div>
-                            ${dados.matricula ? `<div style="background: #f4f7fc; padding: 12px; border-radius: 8px; margin-bottom: 8px;"><strong>Matrícula/CPF:</strong> ${dados.matricula}</div>` : ''}
-                            <div style="background: #f4f7fc; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
-                                <strong>Data da Ocorrência:</strong> ${dataFormatada}
-                            </div>
-                            <div style="background: #f4f7fc; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
-                                <strong>Tipo de Ocorrência:</strong> ${dados.tipoOcorrencia}${dados.justificativa ? ` - ${dados.justificativa}` : ''}
-                            </div>
-                            
-                            <h3 style="margin: 25px 0 15px 0; color: #1a2b7c;">⏱️ Marcações de Ponto</h3>
+                            <div class="info-row"><strong>Colaborador:</strong> <span>${dados.nomeColaborador}</span></div>
+                            ${dados.matricula ? `<div class="info-row"><strong>Matrícula/CPF:</strong> <span>${dados.matricula}</span></div>` : ''}
+                            <div class="info-row"><strong>Data da Ocorrência:</strong> <span>${dataFormatada}</span></div>
+                            <div class="info-row"><strong>Tipo de Ocorrência:</strong> <span>${dados.tipoOcorrencia}${dados.justificativa ? ` - ${dados.justificativa}` : ''}</span></div>
+                            <h3 style="margin:20px 0 10px; color:#1a2b7c;">⏱️ Marcações de Ponto</h3>
                             ${marcacoesHTML}
-                            
-                            ${dados.observacoes ? `
-                                <h3 style="margin: 25px 0 15px 0; color: #1a2b7c;">📝 Observações</h3>
-                                <div style="background: #f4f7fc; padding: 12px; border-radius: 8px;">${dados.observacoes}</div>
-                            ` : ''}
-                            
-                            <div style="display: flex; justify-content: space-between; margin-top: 35px; padding-top: 20px; border-top: 2px dashed #2a4f9e;">
+                            ${dados.observacoes ? `<h3 style="margin:20px 0 10px; color:#1a2b7c;">📝 Observações</h3><div class="info-row">${dados.observacoes}</div>` : ''}
+                            <div class="assinaturas">
                                 <div><strong>Responsável:</strong><br>${dados.responsavel}</div>
                                 <div><strong>Colaborador:</strong><br>${dados.colaboradorAssinatura}</div>
                             </div>
-                            
-                            <div style="text-align: center; font-size: 10px; color: #999; margin-top: 30px;">
+                            <div style="text-align:center; font-size:10px; color:#999; margin-top:20px;">
                                 Documento gerado eletronicamente em ${new Date().toLocaleString('pt-BR')}
                             </div>
                         </div>
                     `;
                 }
                 
-                // 7. Preview
+                // Preview
                 const previewArea = document.getElementById('previewArea');
                 const comunicadoContent = document.getElementById('comunicadoContent');
-                
                 document.getElementById('previewBtn').addEventListener('click', function() {
                     const dados = coletarDados();
                     if (!validarDados(dados)) return;
@@ -564,70 +266,16 @@
                     previewArea.style.display = 'block';
                     previewArea.scrollIntoView({ behavior: 'smooth' });
                 });
+                document.getElementById('fecharPreview').addEventListener('click', () => previewArea.style.display = 'none');
                 
-                document.getElementById('fecharPreview').addEventListener('click', function() {
-                    previewArea.style.display = 'none';
-                });
-                
-                // 8. Gerar PDF (CORRIGIDO)
-                document.getElementById('gerarPdfBtn').addEventListener('click', async function() {
-                    const dados = coletarDados();
-                    if (!validarDados(dados)) return;
-                    
-                    const btn = this;
-                    const originalText = btn.innerHTML;
-                    btn.disabled = true;
-                    btn.innerHTML = '⏳ Gerando PDF...';
-                    
-                    try {
-                        // Criar container invisível para o PDF
-                        const container = document.createElement('div');
-                        container.style.position = 'absolute';
-                        container.style.left = '-9999px';
-                        container.style.top = '-9999px';
-                        container.style.width = '800px';
-                        container.style.backgroundColor = 'white';
-                        container.innerHTML = gerarComunicadoHTML(dados);
-                        document.body.appendChild(container);
-                        
-                        const element = document.getElementById('comunicadoParaExportar');
-                        if (!element) {
-                            throw new Error('Elemento não encontrado');
-                        }
-                        
-                        // Aguardar renderização completa
-                        await new Promise(resolve => setTimeout(resolve, 200));
-                        
-                        const opt = {
-                            margin: [0.5, 0.5, 0.5, 0.5],
-                            filename: `Comunicado_${dados.nomeColaborador.replace(/\s/g, '_')}_${dados.dataOcorrencia}.pdf`,
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { 
-                                scale: 2, 
-                                letterRendering: true,
-                                backgroundColor: '#ffffff',
-                                logging: false
-                            },
-                            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-                        };
-                        
-                        await html2pdf().set(opt).from(element).save();
-                        document.body.removeChild(container);
-                        alert('✅ PDF gerado com sucesso!');
-                        
-                    } catch (error) {
-                        console.error('Erro detalhado:', error);
-                        alert('❌ Erro ao gerar PDF: ' + error.message);
-                    } finally {
-                        btn.disabled = false;
-                        btn.innerHTML = originalText;
-                    }
-                });
-                
-                // 9. Gerar Imagem (CORRIGIDO)
+                // Gerar Imagem
                 document.getElementById('gerarImagemBtn').addEventListener('click', async function() {
                     const dados = coletarDados();
                     if (!validarDados(dados)) return;
+                    
+                    // Mostra o preview primeiro
+                    comunicadoContent.innerHTML = gerarComunicadoHTML(dados);
+                    previewArea.style.display = 'block';
                     
                     const btn = this;
                     const originalText = btn.innerHTML;
@@ -635,39 +283,26 @@
                     btn.innerHTML = '⏳ Gerando imagem...';
                     
                     try {
-                        const container = document.createElement('div');
-                        container.style.position = 'absolute';
-                        container.style.left = '-9999px';
-                        container.style.top = '-9999px';
-                        container.style.width = '800px';
-                        container.style.backgroundColor = 'white';
-                        container.innerHTML = gerarComunicadoHTML(dados);
-                        document.body.appendChild(container);
+                        // Aguarda o preview renderizar
+                        await new Promise(r => setTimeout(r, 200));
                         
-                        const element = document.getElementById('comunicadoParaExportar');
-                        if (!element) {
-                            throw new Error('Elemento não encontrado');
-                        }
+                        const element = document.querySelector('#comunicadoParaExportar');
+                        if (!element) throw new Error('Elemento não encontrado');
                         
-                        await new Promise(resolve => setTimeout(resolve, 100));
-                        
-                        const canvas = await html2canvas(element, {
-                            scale: 2,
+                        const canvas = await html2canvas(element, { 
+                            scale: 2, 
                             backgroundColor: '#ffffff',
-                            logging: false,
-                            useCORS: true
+                            logging: false 
                         });
                         
                         const link = document.createElement('a');
-                        link.download = `Comunicado_${dados.nomeColaborador.replace(/\s/g, '_')}_${dados.dataOcorrencia}.png`;
+                        link.download = `Comunicado_${dados.nomeColaborador.replace(/\s/g, '_')}.png`;
                         link.href = canvas.toDataURL('image/png');
                         link.click();
                         
-                        document.body.removeChild(container);
                         alert('✅ Imagem gerada com sucesso!');
-                        
                     } catch (error) {
-                        console.error('Erro detalhado:', error);
+                        console.error('Erro:', error);
                         alert('❌ Erro ao gerar imagem: ' + error.message);
                     } finally {
                         btn.disabled = false;
@@ -675,26 +310,21 @@
                     }
                 });
                 
-                // 10. Limpar formulário
+                // Botão reset
                 document.querySelector('button[type="reset"]').addEventListener('click', function() {
                     setTimeout(() => {
                         document.querySelectorAll('.marcacao-check').forEach(cb => {
                             const tipo = cb.getAttribute('data-tipo');
-                            const horarioInput = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
-                            if (horarioInput) {
-                                horarioInput.disabled = true;
-                                horarioInput.value = '';
-                            }
+                            const hi = document.querySelector(`.horario-input[data-tipo="${tipo}"]`);
+                            if (hi) { hi.disabled = true; hi.value = ''; }
                         });
                         if (outroDiv) outroDiv.style.display = 'none';
                         if (previewArea) previewArea.style.display = 'none';
-                        if (dataInput) {
-                            dataInput.value = new Date().toISOString().split('T')[0];
-                        }
+                        if (dataInput) dataInput.value = new Date().toISOString().split('T')[0];
                     }, 10);
                 });
                 
-                console.log('✅ App pronto! PDF e imagem funcionando.');
+                console.log('✅ App pronto!');
             });
         })();
     </script>
