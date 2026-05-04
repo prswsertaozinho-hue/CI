@@ -7,17 +7,6 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a2b7c">
     <link rel="apple-touch-icon" href="icon-192.png">
-    
-    <!-- Content Security Policy (CSP) - Protege contra injeção de scripts maliciosos -->
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-        style-src 'self' 'unsafe-inline';
-        img-src 'self' data:;
-        font-src 'self';
-        connect-src 'self';
-    ">
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a2b7c 0%, #2a4f9e 100%); min-height: 100vh; padding: 20px; }
@@ -52,11 +41,7 @@
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } .container { padding: 15px; } }
     </style>
-    
-    <!-- html2canvas com SRI (Subresource Integrity) para garantir integridade do arquivo -->
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"
-            integrity="sha384-3Ll5M6VLG3QyA0zU9qL4tWnFv3Ei/lS2kO9Gr3l2z31W3E1BkBiWoCJ6vT6E/U0M"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -66,7 +51,7 @@
             <small>CNPJ: 23.804.920/0001-68</small>
         </div>
 
-        <form id="ocorrenciaForm">
+        <form id="ocorrenciaForm" autocomplete="on">
             <div class="form-section">
                 <h2>👤 Dados do Colaborador</h2>
                 <div class="form-group">
@@ -75,11 +60,11 @@
                 </div>
                 <div class="form-group">
                     <label>Matrícula / CPF</label>
-                    <input type="text" id="matricula" name="matricula" placeholder="Opcional" autocomplete="name">
+                    <input type="text" id="matricula" name="matricula" placeholder="Opcional" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label>Data da ocorrência *</label>
-                    <input type="date" id="dataOcorrencia" name="dataOcorrencia" required>
+                    <input type="date" id="dataOcorrencia" name="dataOcorrencia" required autocomplete="off">
                 </div>
             </div>
 
@@ -104,13 +89,13 @@
                 </div>
                 <div class="form-group" id="outroJustificativa" style="display: none;">
                     <label>Justificativa:</label>
-                    <input type="text" id="justificativaOutro" placeholder="Descreva a ocorrência">
+                    <input type="text" id="justificativaOutro" placeholder="Descreva a ocorrência" autocomplete="off">
                 </div>
             </div>
 
             <div class="form-section">
                 <h2>📝 Observações</h2>
-                <textarea id="observacoes" rows="3" placeholder="Informações adicionais..."></textarea>
+                <textarea id="observacoes" rows="3" placeholder="Informações adicionais..." autocomplete="off"></textarea>
             </div>
             <div class="form-section">
                 <h2>✍️ Assinaturas</h2>
@@ -138,22 +123,8 @@
 
     <script>
         (function() {
-            console.log('🚀 App inicializando (versão segura)...');
+            console.log('🚀 App inicializando...');
             
-            // ==================== FUNÇÃO DE SANITIZAÇÃO (PROTEÇÃO XSS) ====================
-            /**
-             * Sanitiza texto para prevenir injeção de código malicioso (XSS)
-             * Converte caracteres especiais em entidades HTML
-             */
-            function sanitizar(texto) {
-                if (!texto) return '';
-                // Converte string para texto puro e depois para HTML seguro
-                const div = document.createElement('div');
-                div.textContent = texto;
-                return div.innerHTML;
-            }
-            
-            // ==================== INICIALIZAÇÃO ====================
             document.addEventListener('DOMContentLoaded', function() {
                 console.log('✅ DOM carregado');
                 
@@ -205,7 +176,7 @@
                     toggleOutro();
                 }
                 
-                // ==================== COLETA DE DADOS ====================
+                // Coletar dados
                 function coletarDados() {
                     const marcacoes = [];
                     const tipos = ['entrada1', 'saida1', 'entrada2', 'saida2', 'entrada3', 'saida3'];
@@ -251,25 +222,12 @@
                     return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : dataString;
                 }
                 
-                // ==================== GERAÇÃO DE HTML SEGURO (SEM XSS) ====================
                 function gerarComunicadoHTML(dados) {
                     const dataFormatada = formatarData(dados.dataOcorrencia);
-                    
-                    // Sanitiza dados ANTES de montar o HTML
-                    const nomeColaboradorSanitizado = sanitizar(dados.nomeColaborador);
-                    const matriculaSanitizada = sanitizar(dados.matricula);
-                    const dataFormatadaSanitizada = sanitizar(dataFormatada);
-                    const tipoOcorrenciaSanitizado = sanitizar(dados.tipoOcorrencia);
-                    const justificativaSanitizada = sanitizar(dados.justificativa);
-                    const observacoesSanitizadas = sanitizar(dados.observacoes);
-                    const responsavelSanitizado = sanitizar(dados.responsavel);
-                    const colaboradorAssinaturaSanitizado = sanitizar(dados.colaboradorAssinatura);
-                    const dataGeracaoSanitizada = sanitizar(new Date().toLocaleString('pt-BR'));
-                    
                     let marcacoesHTML = dados.marcacoes.length > 0 ? `
                         <table class="marcacoes-table">
                             <thead><tr><th>Horário</th><th>Registro</th></tr></thead>
-                            <tbody>${dados.marcacoes.map(m => `<tr><td>${sanitizar(m.tipo)}</td><td>${sanitizar(m.horario)}</td>`).join('')}</tbody>
+                            <tbody>${dados.marcacoes.map(m => `<tr><td>${m.tipo}</td><td>${m.horario}</td></tr>`).join('')}</tbody>
                         </table>
                     ` : '<p style="text-align:center; color:#999;">Nenhuma marcação de ponto registrada.</p>';
                     
@@ -280,29 +238,27 @@
                                 <p style="color:#2a4f9e; font-weight:bold;">SW SERVIÇOS EM MEDICINA E SEGURANÇA DO TRABALHO LTDA</p>
                                 <small>CNPJ: 23.804.920/0001-68</small>
                             </div>
-                            <div class="info-row"><strong>Colaborador:</strong> <span>${nomeColaboradorSanitizado}</span></div>
-                            ${dados.matricula ? `<div class="info-row"><strong>Matrícula/CPF:</strong> <span>${matriculaSanitizada}</span></div>` : ''}
-                            <div class="info-row"><strong>Data da Ocorrência:</strong> <span>${dataFormatadaSanitizada}</span></div>
-                            <div class="info-row"><strong>Tipo de Ocorrência:</strong> <span>${tipoOcorrenciaSanitizado}${dados.justificativa ? ` - ${justificativaSanitizada}` : ''}</span></div>
+                            <div class="info-row"><strong>Colaborador:</strong> <span>${dados.nomeColaborador}</span></div>
+                            ${dados.matricula ? `<div class="info-row"><strong>Matrícula/CPF:</strong> <span>${dados.matricula}</span></div>` : ''}
+                            <div class="info-row"><strong>Data da Ocorrência:</strong> <span>${dataFormatada}</span></div>
+                            <div class="info-row"><strong>Tipo de Ocorrência:</strong> <span>${dados.tipoOcorrencia}${dados.justificativa ? ` - ${dados.justificativa}` : ''}</span></div>
                             <h3 style="margin:20px 0 10px; color:#1a2b7c;">⏱️ Marcações de Ponto</h3>
                             ${marcacoesHTML}
-                            ${dados.observacoes ? `<h3 style="margin:20px 0 10px; color:#1a2b7c;">📝 Observações</h3><div class="info-row">${observacoesSanitizadas}</div>` : ''}
+                            ${dados.observacoes ? `<h3 style="margin:20px 0 10px; color:#1a2b7c;">📝 Observações</h3><div class="info-row">${dados.observacoes}</div>` : ''}
                             <div class="assinaturas">
-                                <div><strong>Responsável:</strong><br>${responsavelSanitizado}</div>
-                                <div><strong>Colaborador:</strong><br>${colaboradorAssinaturaSanitizado}</div>
+                                <div><strong>Responsável:</strong><br>${dados.responsavel}</div>
+                                <div><strong>Colaborador:</strong><br>${dados.colaboradorAssinatura}</div>
                             </div>
                             <div style="text-align:center; font-size:10px; color:#999; margin-top:20px;">
-                                Documento gerado eletronicamente em ${dataGeracaoSanitizada}
+                                Documento gerado eletronicamente em ${new Date().toLocaleString('pt-BR')}
                             </div>
                         </div>
                     `;
                 }
                 
-                // ==================== EVENTOS ====================
+                // Preview
                 const previewArea = document.getElementById('previewArea');
                 const comunicadoContent = document.getElementById('comunicadoContent');
-                
-                // Visualizar Preview
                 document.getElementById('previewBtn').addEventListener('click', function() {
                     const dados = coletarDados();
                     if (!validarDados(dados)) return;
@@ -310,8 +266,6 @@
                     previewArea.style.display = 'block';
                     previewArea.scrollIntoView({ behavior: 'smooth' });
                 });
-                
-                // Fechar Preview
                 document.getElementById('fecharPreview').addEventListener('click', () => previewArea.style.display = 'none');
                 
                 // Gerar Imagem
@@ -370,7 +324,7 @@
                     }, 10);
                 });
                 
-                console.log('✅ App pronto (versão segura contra XSS)!');
+                console.log('✅ App pronto!');
             });
         })();
     </script>
